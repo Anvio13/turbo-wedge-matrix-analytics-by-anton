@@ -9,9 +9,9 @@ function render(id){
   const L=V.slice(0,-1).map((r,i)=>r.map((v,c)=>v===0?null:(v-V[i+1][c])/v*100));
   const all=L.flat().filter(v=>v!==null),lo=Math.min(...all),hi=Math.max(...all);
   const leadRows=[funnels.test.values.at(-1),funnels.universities.values.at(-1),funnels.preparation.values.at(-1)];
-  const exportedLeads=[0,5,8,9,1,1,0,2,1,1,5];
-  const mixedLeads=dates.map((_,c)=>exportedLeads[c]-leadRows.reduce((sum,row)=>sum+row[c],0));
-  const leadFoot=mean=>`<tfoot class="lead-summary"><tr><th>Всего лидов в день</th>${exportedLeads.map(v=>`<td>${v}</td>`).join("")}${mean?"<td>—</td>":""}</tr><tr><th>Тесты / универы / подготовка / смешанная</th>${dates.map((_,c)=>`<td title="Смешанная = отдельная выгрузка лидов минус три явных пути">${leadRows.map(row=>row[c]).join(" / ")} / <span class="${mixedLeads[c]<0?"mixed-negative":""}">${mixedLeads[c]}</span></td>`).join("")}${mean?"<td>—</td>":""}</tr></tfoot>`;
+  const uniqueLeads=[0,5,4,6,1,1,0,2,1,1,4];
+  const mixedLeads=dates.map((_,c)=>uniqueLeads[c]-leadRows.reduce((sum,row)=>sum+row[c],0));
+  const leadFoot=mean=>`<tfoot class="lead-summary"><tr><th>Уникальных реальных лидов в день</th>${uniqueLeads.map(v=>`<td>${v}</td>`).join("")}${mean?"<td>—</td>":""}</tr><tr><th>Тесты / универы / подготовка / смешанная</th>${dates.map((_,c)=>`<td title="Смешанная = уникальные реальные лиды минус три явных пути">${leadRows.map(row=>row[c]).join(" / ")} / <span class="${mixedLeads[c]<0?"mixed-negative":""}">${mixedLeads[c]}</span></td>`).join("")}${mean?"<td>—</td>":""}</tr></tfoot>`;
   const cell=(v,ref,c)=>c===0||v===ref?"":v>ref?" above-average":" below-average";
   const basic=color=>`<table>${header()}<tbody>${S.map((s,r)=>`<tr><th>${s}</th>${V[r].map((v,c)=>`<td${color?` style="background:${heat(v,V[0][c])}" title="${(v/V[0][c]*100).toFixed(1)}% от максимума дня"`:""}>${v}</td>`).join("")}</tr>`).join("")}</tbody>${leadFoot()}</table>`;
   const delta=()=>{let rows=[];S.forEach((s,r)=>{rows.push(`<tr class="event-row"><th>${s}</th>${V[r].map(v=>`<td>${v}</td>`).join("")}</tr>`);if(r<S.length-1)rows.push(`<tr class="delta-row"><th>Потеря к следующему шагу</th>${V[r].map((v,c)=>`<td>${V[r+1][c]-v}</td>`).join("")}</tr>`)});return `<table>${header()}<tbody>${rows.join("")}</tbody>${leadFoot()}</table>`};
