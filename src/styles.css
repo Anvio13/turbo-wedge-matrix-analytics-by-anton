@@ -55,10 +55,6 @@ th:last-child, td:last-child { border-right: 0; }
 .comparison-summary th { text-align: left; }
 .blue-count { color: #1c6ea4; }
 .red-count { color: #b44949; }
-.lead-summary th, .lead-summary td { background: #f0f0ee; font-weight: 600; }
-.lead-summary tr:first-child th, .lead-summary tr:first-child td { border-top: 3px solid #151515; }
-.lead-summary th { text-align: left; }
-.mixed-negative { color: #b44949; }
 @media (max-width: 700px) {
   .page { padding: 36px 18px 64px; }
   header { margin-bottom: 42px; }
