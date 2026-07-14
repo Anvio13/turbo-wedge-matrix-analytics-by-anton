@@ -5,13 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Turbo Wedge — воронка 3–13 июля</title>
     <meta name="description" content="Матрица воронки Turbo Wedge за 3–13 июля 2026 года." />
+    <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
     <main class="page">
       <header>
-        <h1>Воронка Turbo Wedge</h1>
+        <h1>Воронки Turbo Wedge</h1>
         <p>Дневные срезы за 3–13 июля 2026</p>
+        <nav class="tabs" aria-label="Воронки">
+          <button type="button" data-funnel="test">Тест</button>
+          <button type="button" data-funnel="universities">Универы</button>
+          <button type="button" data-funnel="preparation">Подготовка</button>
+        </nav>
       </header>
+      <h2 class="funnel-title" id="funnel-title"></h2>
       <section aria-labelledby="base-title">
         <h2 id="base-title">Матрица значений</h2>
         <div class="table-frame"><div id="base-matrix"></div></div>
@@ -27,7 +34,19 @@
         <h2 id="delta-title">Матрица с потерями между шагами</h2>
         <div class="table-frame"><div id="delta-matrix"></div></div>
       </section>
+      <section aria-labelledby="percent-title">
+        <div class="section-heading">
+          <div><h2 id="percent-title">Матрица потерь в процентах</h2><p>Среднее рассчитано только по 4–13 июля.</p></div>
+        </div>
+        <div class="table-frame"><div id="percent-matrix"></div></div>
+      </section>
+      <section aria-labelledby="comparison-title">
+        <div class="section-heading">
+          <div><h2 id="comparison-title">Матрица сравнений со средним</h2><p>Синяя отметка — выше среднего, красная — ниже. Среднее рассчитано по 4–13 июля.</p></div>
+        </div>
+        <div class="table-frame"><div id="comparison-matrix"></div></div>
+      </section>
     </main>
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="./src/main.js"></script>
   </body>
 </html>
