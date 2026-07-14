@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && node scripts/postbuild.mjs",
     "dev": "vite --host 0.0.0.0"
   },
   "devDependencies": {
